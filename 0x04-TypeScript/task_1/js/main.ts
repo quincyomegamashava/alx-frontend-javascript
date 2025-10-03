@@ -50,3 +50,26 @@ const printTeacherAsFn: printTeacherFunction = (firstName, lastName) => printTea
 
 // Example usage
 console.log(printTeacherAsFn("John", "Doe"));
+
+// Interfaces describing the StudentClass and its constructor
+interface StudentClassInterface {
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+// Class implementation
+class StudentClass implements StudentClassInterface {
+  constructor(private firstName: string, private lastName: string) {}
+
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
