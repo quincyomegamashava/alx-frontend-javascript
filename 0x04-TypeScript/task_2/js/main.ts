@@ -81,7 +81,7 @@ console.log(executeWork(createEmployee(1000)));  // Getting to director tasks
 // String literal type and teachClass function
 type Subjects = 'Math' | 'History';
 
-export function teachClass(todayClass: Subjects): string {
+export function teachClass(todayClass:Subjects): string {
   if (todayClass === 'Math') {
     return 'Teaching Math';
   }
