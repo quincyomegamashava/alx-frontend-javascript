@@ -55,16 +55,23 @@ console.log(createEmployee(1000).constructor.name);  // Director
 console.log(createEmployee("$500").constructor.name); // Director
 
 // Type predicate to check if an employee is a Director
-function isDirector(employee: Employee): employee is Director {
+export function isDirector(employee: Employee): employee is Director {
   return employee instanceof Director;
 }
 
+function isTeacher(employee: Employee): employee is Teacher {
+  return employee instanceof Teacher;
+}
+
 // Execute the appropriate work based on employee type
-function executeWork(employee: Employee): string {
+export function executeWork(employee: Employee): string {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
   }
-  return (employee as Teacher).workTeacherTasks();
+  if (isTeacher(employee)) {
+    return employee.workTeacherTasks();
+  }
+  return "";
 }
 
 // Expected results
