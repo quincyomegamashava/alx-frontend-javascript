@@ -18,11 +18,11 @@ const teacher3: Teacher = {
 
 console.log(teacher3);
 
-interface Directors extends Teacher {
+interface Director extends Teacher {
   numberOfReports: number;
 }
 
-const director1: Directors = {
+const director1: Director = {
   firstName: 'John',
   lastName: 'Doe',
   location: 'London',
@@ -37,8 +37,16 @@ interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
 
-// Implementation of printTeacher
-const printTeacher: printTeacherFunction = (firstName, lastName) => `${firstName.charAt(0)}. ${lastName}`;
+type Name = { firstName: string; lastName: string };
+
+// Implementation of printTeacher as a function declaration using destructuring
+function printTeacher({ firstName, lastName }: Name): string {
+  firstName = firstName.charAt(0);
+  return `${firstName}. ${lastName}`;
+}
+
+// Adapter to satisfy printTeacherFunction interface signature
+const printTeacherAsFn: printTeacherFunction = (firstName, lastName) => printTeacher({ firstName, lastName });
 
 // Example usage
-console.log(printTeacher("John", "Doe"));
+console.log(printTeacherAsFn("John", "Doe"));
